@@ -8,20 +8,14 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: false
       - run:
-          name: curl test
-          command: curl http://ec2-18-191-70-3.us-east-2.compute.amazonaws.com 
+          name: get current global ip address
+          command: gip=`curl -X GET https://api.ipify.org`
       - run:
-          name: get gip
-          command: gip=`curl -X GET https://api.ipify.org` && echo "Global IPアドレス："$gip
-      - run:
-          name: echo gip again
-          command: echo "Global IPアドレス："$gip
-      - run:
-          name: add rule
+          name: add rule to allow port 80
           command: aws ec2 authorize-security-group-ingress --group-name cci-test --protocol tcp --port 80 --cidr $gip"/32"
       - run:
-          name: curl test
+          name: curl test (ensure curl responses)
           command: curl http://ec2-18-191-70-3.us-east-2.compute.amazonaws.com
       - run:
-          name: remove rule
+          name: remove the rule
           command: aws ec2 authorize-security-group-ingress --group-name cci-test --protocol tcp --port 80 --cidr $gip"/32"
