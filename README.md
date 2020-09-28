@@ -4,11 +4,11 @@
 
 This is a sample CCI yaml to allow specific port from a specific ip address at certain process.
 
-In this code, job proceed as below:
+In this yml, the workfrol proceed as below:
 1. get global ip address -- get CCI container global address asigned to this build (this changes everytime)
-1. use aws cli to add a rule that allows port 80 from the detected global ip
-1. curl to the specific address that is secured by this security group
-1. remove the rule added
+1. use aws cli to add a rule that allows port 80 from the detected global ip to the security group called "cci-test"
+1. curl to the specific address that is protected by this security group
+1. remove the rule added at 2. from the security group
 
 ## Docker-image
 
