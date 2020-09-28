@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a sample CCI yaml to allow specific port from a specific ip address at certain process.
+This is a simple example CCI yaml to allow specific port from a specific ip address instantly at certain process.
 
 In this yml, the workfrol proceed as below:
 1. get global ip address -- get CCI container global address asigned to this build (this changes everytime)
